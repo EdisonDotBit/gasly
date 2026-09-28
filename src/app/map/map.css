@@ -1,0 +1,7 @@
+.map-placeholder {
+  height: 400px;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
