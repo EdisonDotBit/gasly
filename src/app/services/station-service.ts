@@ -1,4 +1,7 @@
-import { Service } from '@angular/core';
+import { Service, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Service()
-export class StationService {}
+export class StationService {
+    private http = inject(HttpClient);
+}
