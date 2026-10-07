@@ -22,7 +22,11 @@ export class Map implements AfterViewInit {
 
     this.stationService.getStations().subscribe({ 
       next: data => {
-        console.log('Stations from API:', data);
+        data.forEach(station => {
+          L.marker([station.latitude, station.longitude])
+            .addTo(map)
+            .bindPopup(station.name);
+        });
       },
       error: error => {
         console.error('Failed to load stations:', error);
