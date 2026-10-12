@@ -33,7 +33,13 @@ export class Map implements AfterViewInit {
         data.forEach(station => {
           L.marker([station.latitude, station.longitude])
             .addTo(map)
-            .bindPopup(station.name);
+            .bindPopup(`
+              <strong>${station.name}</strong>
+              <br>
+              Latitude: ${station.latitude}
+              <br>
+              Longitude: ${station.longitude}
+            `);
         });
       },
       error: error => {
