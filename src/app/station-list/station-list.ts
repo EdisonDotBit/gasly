@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { Station } from '../models/station';
 
 @Component({
   imports: [],
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './station-list.css',
   templateUrl: './station-list.html',
 })
-export class StationList {}
+export class StationList {
+  stations = input<Station[]>([]);
+}

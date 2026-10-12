@@ -1,18 +1,15 @@
-<section>
-  <h2>Gas Stations</h2>
+<section class="border-t px-5 py-4">
+  <h2 class="mb-4 font-semibold text-gray-900">
+    Fuel Stations ({{ stations().length }})
+  </h2>
 
-  <div>
-    <h3>Shell</h3>
-    <p>₱65.50 / L</p>
-  </div>
-
-  <div>
-    <h3>Petron</h3>
-    <p>₱64.90 / L</p>
-  </div>
-
-  <div>
-    <h3>Caltex</h3>
-    <p>₱65.20 / L</p>
+  <div class="space-y-3">
+    @for (station of stations(); track station.id) {
+      <div class="rounded-lg border p-3">
+        <h3 class="font-medium text-gray-900">{{ station.name }}</h3>
+        <p class="text-sm text-gray-600">Latitude: {{ station.latitude }}</p>
+        <p class="text-sm text-gray-600">Longitude: {{ station.longitude }}</p>
+      </div>
+    }
   </div>
 </section>
