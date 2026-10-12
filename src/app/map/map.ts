@@ -1,5 +1,7 @@
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { AfterViewInit, Component, inject, signal } from '@angular/core';
 import * as L from 'leaflet';
+import { Station } from '../models/station';
+import { StationList } from '../station-list/station-list';
 
 import { StationService } from '../services/station-service';
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -12,7 +14,7 @@ L.Icon.Default.mergeOptions({
 
 @Component({
   selector: 'app-map',
-  imports: [],
+  imports: [StationList],
   templateUrl: './map.html',
   styleUrl: './map.css'
 })
@@ -20,6 +22,8 @@ L.Icon.Default.mergeOptions({
 export class Map implements AfterViewInit {
 
   private stationService = inject(StationService);
+
+  stations = signal<Station[]>([]);
 
   ngAfterViewInit(): void {
     const map = L.map('map').setView([14.5995, 120.9842], 12);
@@ -30,6 +34,8 @@ export class Map implements AfterViewInit {
 
     this.stationService.getStations().subscribe({ 
       next: data => {
+        this.stations.set(data);
+
         data.forEach(station => {
           L.marker([station.latitude, station.longitude])
             .addTo(map)
